@@ -1,0 +1,41 @@
+CREATE DATABASE KOCHEL_BAZA1;
+go
+USE KOCHEL_BAZA1;
+
+
+CREATE TABLE Wypozyczenia
+(
+	Nr_wyp int identity(1,1) primary key NOT NULL,
+	Nr_kl int,
+	Nr_ks int,
+	Data_wyp datetime,
+	Data_odd datetime,
+);
+CREATE TABLE Autorzy
+(
+	Nr_a int identity(1,1) primary key NOT NULL,
+	Imie varchar(25),
+	Nazwisko varchar(25),
+);
+CREATE TABLE Klienci
+(
+	Nr_kl int identity(1,1) primary key NOT NULL,
+	Imie varchar(25),
+	Nazwisko varchar(25),
+	Ulica varchar(25),
+	Kod varchar(6),
+	Miasto varchar(25),
+	PESEL varchar(16),
+);
+CREATE TABLE Ksiazki
+(
+	Nr_ks int identity(1,1) primary key NOT NULL,
+	Tytul varchar(60),
+	Rok int,
+	Nr_a int,
+	Gatunek varchar(25),
+	Cena money,
+);
+ALTER TABLE Wypozyczenia ADD CONSTRAINT Klucz_klienta FOREIGN KEY (Nr_kl) REFERENCES Klienci(Nr_kl);
+ALTER TABLE Wypozyczenia ADD CONSTRAINT Klucz_ksiazki FOREIGN KEY (Nr_ks) REFERENCES Ksiazki(Nr_ks);
+ALTER TABLE Ksiazki ADD CONSTRAINT Klucz_autora FOREIGN KEY (Nr_a) REFERENCES Autorzy(Nr_a);
