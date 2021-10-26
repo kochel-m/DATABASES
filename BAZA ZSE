@@ -1,0 +1,48 @@
+CREATE DATABASE KOCHEL_BAZA3;
+go
+USE KOCHEL_BAZA3;
+
+CREATE TABLE Nauczyciele
+(
+	Id_n int identity(1,1) primary key NOT NULL,
+	Imie varchar(25) NOT NULL,
+	Nazwisko varchar(25) NOT NULL,
+);
+CREATE TABLE Klasy
+(
+	Id_k int identity(1,1) primary key NOT NULL,
+	Nazwa varchar(15) NOT NULL,
+	Id_n int UNIQUE NOT NULL REFERENCES Nauczyciele(Id_n),
+)
+CREATE TABLE Uczniowie
+(
+	Id_u int identity(1,1) primary key NOT NULL,
+	Imie varchar(25) NOT NULL,
+	Nazwisko varchar(25) NOT NULL,
+	Id_k int REFERENCES Klasy(Id_n),
+);
+CREATE TABLE Nauczanie
+(
+	Id_nau int identity(1,1) primary key NOT NULL,
+	Id_p int NOT NULL,
+	Id_n int NOT NULL REFERENCES Nauczyciele(id_n),
+	id_k int NOT NULL,
+)
+CREATE TABLE Kwalifikacje
+(
+	Id_kw int identity(1,1) primary key NOT NULL,
+	Kod varchar(10) NOT NULL,
+	Nazwa varchar(50) NOT NULL,
+)
+CREATE TABLE Przedmioty
+(
+	Id_p int identity(1,1) primary key NOT NULL,
+	Nazwa varchar(25) NOT NULL,
+	Id_kw int NOT NULL REFERENCES Kwalifikacje(Id_kw),
+)
+
+
+
+
+
+
