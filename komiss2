@@ -1,0 +1,67 @@
+create database komisS45211231
+go
+use komisS45211231
+create table Handlarze
+(
+Nr_h int identity(1,1) primary key,
+Nazwa varchar(20) not null,
+Ulica varchar(30) not null,
+Kod varchar(15) not null,
+Miasto varchar(15) not null,
+)
+create table Kierowcy
+(
+Nr_k int identity(1,1) primary key,
+Nazwisko varchar(20) not null,
+Imie varchar(15) not null,
+Ulica varchar(15) not null,
+Kod varchar(6) not null,
+Miasto varchar(15) not null,
+)
+create table Pracownicy
+(
+Nr_pr int identity(1,1) primary key,
+Imie varchar(20) not null,
+Nazwisko varchar(20) not null,
+Telefon varchar(11),
+Email varchar(40), 
+)
+
+
+create table Samochody 
+(
+Nr_s int identity(1,1) primary key,
+Marka varchar(15) not null,
+Model varchar(15) not null,
+Pojemnosc float not null,
+Kolor varchar(10) not null,
+Rocznik int not null,
+Spalanie float not null,
+Nr_h int not null REFERENCES Handlarze(Nr_h),
+)
+create table Sprzedaz
+(
+Nr_sp int identity(1,1) primary key,
+Nr_s int not null REFERENCES Samochody(Nr_s),
+Data_wys date not null default getdate(),
+Cena_h money not null,
+Cena money not null,
+Nr_k int REFERENCES Kierowcy(Nr_k),
+Nr_pr int REFERENCES Pracownicy(Nr_pr),
+Data_sp date,
+)
+INSERT INTO Handlarze (Nazwa,Ulica,Kod,Miasto) VALUES ('Niekręcone.pl','Sieradzka 10','98-220','Zduńska Wola'),('Auto-Szrot','Orzeszkowej Elizy 14','60-778','Poznań'),('OtoSzroto','Dźwigowa 43','01-376','Warszawa'),('Deutsche Komis','Widawska 44','98-220','Zduńska Wola'),('OycheDonizSamochody','Gotycka 8','80-253','Gdańsk');
+INSERT INTO Kierowcy (Imie,Nazwisko,Ulica,Kod,Miasto) VALUES  ('Mateusz','Kochelski','Rembieszów 68','98-161','Zapolice'),('Szymon','Dulin','Tysiąclenie 2','98-220','Zduńska Wola'),('Jakub','Grabia','Rembieszów 49','98-161','Zapolice'),('Jakub','Kazek','Za torami 88','98-220','Zduńska Wola'),('Ryszard','Kochelski','Rembieszów 68','98-220','Zduńska Wola');
+INSERT INTO Pracownicy (Imie,Nazwisko,Telefon,Email) VALUES ('Krzysztof','Sauć','751454678','KrzysztofSauc@gmail.com'),('Norbert','Gierczak','712354678','NorbiGierczus@buziaczek.com'),('Damiam','Ziaja','768123888','DamianZiaja@op.pl'),('Roberto','Sousa','798655445','RobertoSousa@pzpn.pl'),('Bogdan','Zółwik','887454631','BogdanBMW@wp.pl');
+INSERT INTO Samochody(Marka,Model,Pojemnosc,Kolor,Rocznik,Spalanie,Nr_h) VALUES ('Opel','Astra',1.6,'Czarny',2009,8.4,3),('Ford','Focus',1.8,'Grafitowy',2007,11.2,5),('Peugeot','207',1.4,'Srebrny',2011,7.6,2),('Volksvagen','Golf',1.9,'Zielony',2008,8.8,1),('Ford','Fiesta',1.2,'Czerwony',2009,6.5,3);
+INSERT INTO Sprzedaz (Nr_s,Data_wys,Cena_h,Cena,Nr_k,Nr_pr,Data_sp) VALUES (1,'2021-10-01',15000,17000,2,5,'2021-10-10'), (2,'2021-10-01',13000,14000,5,4,'2021-10-10'), (3,'2021-10-01',10900,15000,1,1,'2021-10-10'),(4,default,12000,16000,null,null,null),(5,default,9800,12000,null,null,null);
+
+
+
+
+
+SELECT * FROM Samochody;
+SELECT * FROM Sprzedaz
+SELECT * FROM Handlarze;
+SELECT * FROM Kierowcy;
+SELECT * FROM Pracownicy;
