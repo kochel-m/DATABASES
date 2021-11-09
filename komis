@@ -1,0 +1,57 @@
+create database komisS
+go
+use komisS
+create table Samochody 
+(
+Nr_s int identity(1,1) primary key,
+Marka varchar(15) not null,
+Model varchar(15) not null,
+Pojemnosc float not null,
+Kolor varchar(10) not null,
+Rocznik int not null,
+Spalanie float not null,
+Nr_h int not null
+)
+create table Sprzedaz
+(
+Nr_sp int identity(1,1) primary key,
+Nr_s int not null,
+Data_wys date not null,
+Cena_h money not null,
+Cena money not null,
+Nr_k int,
+Nr_pr int,
+Data_sp date 
+
+)
+create table Handlarze
+(
+Nr_h int identity(1,1) primary key,
+Nazwa varchar(20) not null,
+Ulica varchar(15) not null,
+Kod varchar(15) not null,
+Miasto varchar(15) not null,
+)
+
+create table Kierowcy
+(
+Nr_k int identity(1,1) primary key,
+Nazwisko varchar(20) not null,
+Imie varchar(15) not null,
+Ulica varchar(15) not null,
+Kod varchar(6) not null,
+Miasto varchar(15) not null,
+)
+
+create table Pracownicy
+(
+Nr_pr int identity(1,1) primary key,
+Imie varchar(20) not null,
+Nazwisko varchar(20) not null,
+Telefon varchar(11) not null,
+Email varchar(20) not null,
+)
+--alter table Sprzedaz add constraint klucz_sprzedaz foreign key (Nr_s) references Samochody (Nr_s)
+--alter table Sprzedaz add constraint Klucz_Pracownicy foreign key (Nr_pr) references Pracownicy(Nr_pr)
+--alter table Sprzedaz add constraint Klucz_Kierowcy foreign key (Nr_k) references Kierowcy (Nr_k)
+--alter table Samochody add constraint Klucz_samochody foreign key (Nr_h) references Handlarz(Nr_h)
