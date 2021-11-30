@@ -1,0 +1,56 @@
+
+               --ZAPYTANIA
+
+WYBIERANIE WSZYSTKICH KOLUMN
+select * from Samochody
+
+WYBIERANIE OKREŚLONYCH KOLUMN
+select Marka, Nr_rej, Kolor from Samochody
+
+WYBIERANIE Z JEDNOCZESNYM PORZĄDKOWANIEM
+select Marka, Nr_rej, Kolor from Samochody order by Marka asc
+select Marka, Nr_rej, Kolor from Samochody order by Marka asc, Kolor desc
+
+WYBIERANIE NIEPOWTARZAJĄCYCH SIĘ WIERSZY
+select Nr_rej, Kolor from Samochody order by Nr_rej
+select distinct  Nr_rej, Kolor from Samochody order by Nr_rej
+
+WYBIERANIE OKREŚLONYCH WIERSZY
+select Marka, Nr_rej, Kolor from Samochody where (Kolor='Czerwony')
+select Marka, Nr_rej, Kolor from Samochody where (Marka='Polonez') order by Kolor desc
+
+OPERATORY LOGICZNE UŻYWANE W KLAUZULI WHERE
+select Nr, Marka, Nr_rej, Kolor from Samochody where Nr = 20
+select Nr, Marka, Nr_rej, Kolor from Samochody where Nr <> 20
+select Nr, Marka, Nr_rej, Kolor from Samochody where Nr >= 20
+
+OPERATORY AND ORAZ OR
+select Nr, Marka, Nr_rej, Kolor from Samochody where Nr >= 20 and Marka = 'Polonez'
+select Nr, Marka, Nr_rej, Kolor from Samochody where Nr >= 20 and Marka = 'Polonez' or Marka = 'Honda'
+select Nr, Marka, Nr_rej, Kolor from Samochody where Nr >= 20 and Marka = 'Polonez' or Marka = 'Honda' order by Marka
+
+PREDYKAT IN
+select Nr_rej, Kolor from Samochody where Kolor in ('Zielony','Bordowy') order by Nr_rej
+select distinct  Nr_rej, Kolor from Samochody where Kolor in ('Zielony','Bordowy') order by Nr_rej
+
+PREDYKAT BETWEEN
+select Nr, Marka from Samochody where Nr between 10 and 30 order by Nr_rej
+
+WYBIERANIE WARTOŚCI NULL
+select Marka, Kolor from Samochody where Data is null
+select Marka, Kolor from Samochody where Data is not null
+
+WYSZUKIWANIE CZĘŚCIOWE - PREDYKAT LIKE
+select Marka, Kolor, Nr_rej from Samochody where Nr_rej like 'EL%'
+select Marka, Kolor, Nr_rej from Samochody where Nr_rej like '%77'
+select Marka, Kolor, Nr_rej from Samochody where Marka like '__a%'
+select Marka, Kolor, Nr_rej from Samochody where Marka like '%n%a%'
+select Marka, Kolor, Nr_rej from Samochody where Nr_rej not like 'E%' and Nr_rej not like 'L%'
+
+
+
+
+
+
+
+
